@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(opt =>
 {
@@ -30,7 +30,9 @@ app.UseFileServer(new FileServerOptions()
     RequestPath = new PathString("/node_modules"),
     EnableDirectoryBrowsing = true
 });
-
+app.UseCors(
+    builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().WithOrigins("http://localhost:4200")
+);
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 
