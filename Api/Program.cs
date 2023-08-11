@@ -33,6 +33,7 @@ app.UseFileServer(new FileServerOptions()
 app.UseCors(
     builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().WithOrigins("http://localhost:4200")
 );
+// hbhjbjnbhjnknhk
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 
