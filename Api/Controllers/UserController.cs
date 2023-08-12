@@ -15,6 +15,7 @@ public class UserController : ControllerBase
     {
         _context =context;
     }
+    [AllowAnonymous]
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
@@ -22,7 +23,6 @@ public class UserController : ControllerBase
         var users=await _context.AppUsers.ToListAsync();
         return users;
     }
-    [AllowAnonymous]
     [HttpGet("{id}")] // api/users/2
     public async Task<ActionResult<AppUser>> GetUser(int id)
     {
