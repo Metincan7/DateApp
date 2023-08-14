@@ -7,14 +7,7 @@
     <input type="password" class="form-control" name="password" [(ngModel)]="model.password" placeholder="password">
 
 </div>
-<div class="mb-3">
-    <label > Who is your favourite user?</label>
-    <select  class="form-select"> 
-        <option *ngFor="let user of usersFromHomeCopmonent" [value]="user.userName">
-            {{user.userName}}
-        </option>
-    </select>
-</div>
+
 <div class="text-center"><button class="btn btn-success me-2" type="submit" (click)="register()">Register</button></div>
 <div class="text-center"><button class="btn btn-default " type="button" (click)="cancel()">Cancel</button></div>
 </form>
