@@ -12,19 +12,20 @@ namespace Api.Data
         {
             _context=context;
         }
-        public async Task<IEnumerable<AppUser>> GetUserAsync()
-        {
-            return await _context.AppUsers.ToListAsync();
-        }
+        
 
-        public Task<AppUser> GetUserByIdAsync(int id)
+        public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
-            throw new NotImplementedException();
+            return await _context.AppUsers
+            .Include(p => p.Photos)
+            .ToListAsync();
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
-            return await _context.AppUsers.SingleOrDefaultAsync(x=>x.UserName==username);
+            return await _context.AppUsers
+            .Include(p=>p.Photos)
+            .SingleOrDefaultAsync(x=>x.UserName==username);
 
         }
 
@@ -34,10 +35,11 @@ namespace Api.Data
         }
 
 
-        public void Updata(AppUser user)
+        public void Update(AppUser user)
         {
             _context.Entry(user).State=EntityState.Modified; 
         }
 
+       
     }
 }
