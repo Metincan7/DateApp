@@ -1,3 +1,4 @@
+using Api.Data;
 using Api.Entites;
 
 namespace Api.Interfaces
@@ -9,5 +10,7 @@ namespace Api.Interfaces
         Task<IEnumerable<AppUser>> GetUsersAsync();
 
         Task<AppUser> GetUserByUsernameAsync(string username);
+        Task<IEnumerable<MemberDto>> GetMembersAsync();
+        Task<MemberDto> GetMemberAsync (string username);
     }
 }
