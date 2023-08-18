@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers;
-[Authorize]
 [ApiController]
 [Route("api/[controller]")] // api/users
 public class UserController : ControllerBase
