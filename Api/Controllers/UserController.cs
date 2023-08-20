@@ -1,5 +1,7 @@
 using System.Net;
+using System.Security.Claims;
 using Api.Data;
+using Api.DTOs;
 using Api.Entites;
 using Api.Interfaces;
 using AutoMapper;
@@ -36,5 +38,21 @@ public class UserController : ControllerBase
         return await  _userRepository.GetMemberAsync(username);
 
         
+    }
+
+    [HttpPut]
+    public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+    {
+        var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var user=await _userRepository.GetUserByUsernameAsync(username);
+
+        if(user==null) return NotFound();
+
+        _mapper.Map(memberUpdateDto,user);
+
+        if(await _userRepository.SaveAllAsync()) return NoContent();
+
+
+        return BadRequest("Failed to update user");
     }
 }
